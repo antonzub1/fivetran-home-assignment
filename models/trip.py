@@ -5,7 +5,6 @@ from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 
-
 class Trip(Base):
     __tablename__ = "trips"
 

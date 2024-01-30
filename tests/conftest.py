@@ -48,15 +48,6 @@ def connection(db_url, engine):
 
     yield engine.connect()
 
-# @fixture(scope="session")
-# def setup_database(connection):
-#     Base.metadata.bind = connection
-#     Base.metadata.create_all(Base.metadata.bind)
-
-#     yield
-
-#     Base.metadata.drop_all(Base.metadata.bind)
-
 
 @fixture(scope="function", autouse=True)
 def db_session(connection):
