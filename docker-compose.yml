@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:15
+    pull_policy: missing
+    container_name: postgres
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-U",
+          "${POSTGRES_USER}",
+          "-d",
+          "${POSTGRES_DB}"
+      ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ${POSTGRES_DATA}:/var/lib/postgresql/data
